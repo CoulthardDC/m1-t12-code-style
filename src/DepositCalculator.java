@@ -10,11 +10,30 @@ public class DepositCalculator {
         return roundTo(amount + amount * yearRate * depositPeriod, 2);
     }
 
+    //Peer-review: Здесь назавние перменной "ScaLe" в не верном формате
     double roundTo(double value, int places) { // Округление до знака
         double ScaLe = Math.pow(10, places); //100
         return Math.round(value * ScaLe) / ScaLe;
     }
 
+    // Peer-review: Объявление переменных перед их первым использованием (period и action) весма спорно. На мой взгляд
+    // их стоит объявить в том месте где они начинаю использоваться (тоесть в этом случае в строках 45 и 47).
+    // Штука это возможно субъективаная. Может есть случаи где такой подход выгоден, но чаще это просто усложняет чтение
+    // кода и делает его грамоздким
+    //
+    // Так же здесь можно разбить код на логически блоки с помощью пустых строк по типу:
+    //
+    //    void someUnrealMethod() {
+    //        *Здесь некий сканер*
+    //
+    //        *Вывод информативного сообщение*
+    //        *Запрос ввода от пользователя и запись результата в переменную*
+    //
+    //        *Вывод информативного сообщение*
+    //        *Запрос ввода от пользователя и запись результата в переменную*
+    //
+    //        *Некоторая обработка согласно полученым данным*
+    //    }
     void calculateContribution() {
         int period;
         int action;
@@ -35,6 +54,8 @@ public class DepositCalculator {
       System.out.println("Результат вклада: " + amount + " за " + period + " лет превратятся в " + result);
     }
 
+    // Peer-review: main бы наверх самый не?!)) Всё таки я его в конце класса увидел впервые толька на java и только в этом
+    // задании)
     public static void main(String[] args) {
         new DepositCalculator().calculateContribution();
     }
